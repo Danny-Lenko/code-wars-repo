@@ -48,7 +48,7 @@
 
 ### Useful resources
 
-- [Grid Attack](https://codingfantasy.com) - This helped me practice CSS GRID. Challenging and interactive game aimed at learning the css grid properties' application.
+- [Make Custom Functions](https://www.vitoshacademy.com/javascript-make-custom-functions-with-prototype/) - This taugth me to write custom functions with prototype.
 
 - [Git + GitHub](https://www.youtube.com/watch?v=RGOj5yH7evk) - the basic git commands (Youtube).
 - [The Markdown Guide](https://www.markdownguide.org/) - for more help with writing markdown (Article).
