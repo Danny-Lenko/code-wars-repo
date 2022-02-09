@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      function printerError(s) {
+         const sMatch = s.match(/[n-z]/ig);
+         const denom = s.length;
+
+         return (s.length >= 1 && sMatch) ? `${sMatch.length}/${denom}`
+            : (s.length >= 1 && !sMatch) ? `0/${denom}`
+            : `no input`;
+      }
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
