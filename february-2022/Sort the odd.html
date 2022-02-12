@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+   function sortArray(array) {
+      let oddArr = array.filter(num => num % 2 != 0);
+
+      oddArr = oddArr.sort((a,b) => a - b);
+
+      array = array.map(num => num = (num % 2 != 0) ? oddArr.splice(0, 1) 
+         : num).flat();
+
+      return array;
+   }
+
+   console.log(sortArray([5, 8, 6, 3, 4]));
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
