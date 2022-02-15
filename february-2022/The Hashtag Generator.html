@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      function generateHashtag (str) {
+         str = str.split(' ').map(word => word.slice(0,1).toUpperCase() + word.slice(1)).join('');
+
+         return (str.length >= 140) ? false 
+         : (!str) ? false
+         : '#' + str;
+      }
+
+      console.log(generateHashtag(" "));
+      console.log(generateHashtag("Codewars is nice"));
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
