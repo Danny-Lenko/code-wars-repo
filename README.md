@@ -49,6 +49,7 @@
 ### Useful resources
 
 - [Make Custom Functions](https://www.vitoshacademy.com/javascript-make-custom-functions-with-prototype/) - This taugth me to write custom functions with prototype.
+- [Compare Objects](https://stackoverflow.com/a/5859028/16906724) - helped me solve Pete, the baker(Feb-2022).
 
 - [Git + GitHub](https://www.youtube.com/watch?v=RGOj5yH7evk) - the basic git commands (Youtube).
 - [The Markdown Guide](https://www.markdownguide.org/) - for more help with writing markdown (Article).
