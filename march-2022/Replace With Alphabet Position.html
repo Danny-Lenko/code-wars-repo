@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+function alphabetPosition(text) {
+  const alpha = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n", "o","p","q","r","s","t","u","v","w","x","y","z"];
+
+  text = text.toLowerCase().match(/[a-z]/g);
+  if (!text) return ''
+  text = text.map(char => alpha.indexOf(char) + 1);
+  return text.join(' ')
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
