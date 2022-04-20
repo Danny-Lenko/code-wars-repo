@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+function howMuchILoveYou(nbPetals) {
+    const feelings = ['I love you', 'a little', 'a lot', 'passionately', 'madly', 'not at all']
+    const numFlowers = nbPetals / 6
+    let petals = []
+    for (let i = 0; i < numFlowers; i++) {
+      petals.push(...feelings)
+    }
+  
+    return petals[nbPetals - 1]
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
