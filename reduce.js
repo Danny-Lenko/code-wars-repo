@@ -97,3 +97,15 @@ const group = (arr) => {
 };
 
 group(cats);
+
+const minMax = (arr) => {
+  const sample = [arr[0], arr[1]];
+
+  const result = arr.reduce((acc, item) => {
+    acc[0] = acc[0] < item ? acc[0] : item;
+    acc[1] = acc[1] > item ? acc[1] : item;
+    return acc;
+  }, []);
+
+  console.log(result);
+};
