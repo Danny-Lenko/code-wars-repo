@@ -109,3 +109,19 @@ const minMax = (arr) => {
 
   console.log(result);
 };
+
+// A-Bb-Ccc-Dddd
+const accumStr = 'abcd'
+
+const accum = (str) => {
+   const result = str.split('').map((char, i) => {
+      const tail = [...Array(i)].reduce((acc) => {
+         acc = acc + char
+         return acc
+      }, '')
+      return char.toUpperCase() + tail
+   })
+
+   console.log(result.join('-'))
+}
+
