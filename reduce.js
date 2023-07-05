@@ -111,17 +111,31 @@ const minMax = (arr) => {
 };
 
 // A-Bb-Ccc-Dddd
-const accumStr = 'abcd'
+const accumStr = "abcd";
 
 const accum = (str) => {
-   const result = str.split('').map((char, i) => {
-      const tail = [...Array(i)].reduce((acc) => {
-         acc = acc + char
-         return acc
-      }, '')
-      return char.toUpperCase() + tail
-   })
+  const result = str.split("").map((char, i) => {
+    const tail = [...Array(i)].reduce((acc) => {
+      acc = acc + char;
+      return acc;
+    }, "");
+    return char.toUpperCase() + tail;
+  });
 
-   console.log(result.join('-'))
-}
+  console.log(result.join("-"));
+};
 
+const upperCaseStr = "justForTest";
+
+const findUpperCase = (str) => {
+  const arr = str.split("");
+  const reg = /[A-Z]/;
+  const result = arr.reduce((acc, item, i) => {
+    if (item.match(reg)) acc.push(i);
+    return acc;
+  }, []);
+
+  console.log(result);
+};
+
+findUpperCase(upperCaseStr);
