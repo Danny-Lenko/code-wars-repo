@@ -139,3 +139,16 @@ const findUpperCase = (str) => {
 };
 
 findUpperCase(upperCaseStr);
+
+const getUniqueValues = (...rest) => {
+  const result = rest
+    .map((el) => [...new Set(el)])
+    .reduce((acc, el) => {
+      acc.push(...el);
+      return acc;
+    }, []);
+
+  console.log([...new Set(result)]);
+};
+
+getUniqueValues([1], [2], [3, 2, 2], [4, 1, 1, 2]);
