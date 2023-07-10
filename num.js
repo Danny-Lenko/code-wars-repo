@@ -20,4 +20,12 @@ const allNums = (num1, num2) => {
 
 allNums(1, 15);
 
+const number = 123456789
 
+const getPhoneNum = (num) => {
+  const str = num + ''
+
+  console.log(`(${str.slice(0, 3)}) ${str.slice(3, 6)}-${str.slice(6, 9)}`)
+}
+
+getPhoneNum(123456789)
