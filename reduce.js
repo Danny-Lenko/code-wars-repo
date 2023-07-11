@@ -9,9 +9,6 @@ const fruit = [
 
 const numbers = [1, 2, 3, 15, 4, 5, 6, 7, 8];
 
-const countedFruits = countEls(fruit);
-
-console.log(countedFruits);
 
 const getUnique = (arr) => {
   const result = arr.reduce((acc, item, i) => {
@@ -61,7 +58,6 @@ function flattenArr(arr) {
   console.log(result);
 }
 
-flattenArr(Object.entries(countedFruits));
 
 const concatenate = (arr) => {
   const result = arr.reduce((acc, item) => {
@@ -71,6 +67,22 @@ const concatenate = (arr) => {
 
   console.log(result);
 };
+
+// get vowels quantity
+const getVowels = (str) => {
+  const result = str
+    .toLowerCase()
+    .split("")
+    .reduce((acc, char) => {
+      const vowels = ["a", "e", "u", "o", "i"];
+      if (vowels.includes(char)) acc++;
+      return acc;
+    }, 0);
+  console.log(result);
+};
+
+getVowels("hello");
+getVowels("hello World");
 
 // ============================ smarter
 
