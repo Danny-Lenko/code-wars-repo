@@ -81,8 +81,17 @@ const getVowels = (str) => {
   console.log(result);
 };
 
-getVowels("hello");
-getVowels("hello World");
+const capitalize = (str) => {
+  const result = str.split(' ').reduce((acc, item) => {
+    const newItem = item.split('').map((char, i) => i === 0 ? char.toUpperCase() : char).join('')
+    acc.push(newItem)
+    return acc
+  }, [])
+
+  console.log(result.join(' '))
+}
+
+capitalize('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi')
 
 // ============================ smarter
 
