@@ -1,11 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import crypto from "crypto";
+import cors from "cors";
 
 const { subtle, getRandomValues } = crypto.webcrypto;
-// import { subtle } from "crypto";
 
-console.log(subtle);
 
 const meetingsData = {
   participants: [
@@ -75,59 +74,90 @@ const jsonData = JSON.stringify(meetingsData);
 
 const app = express();
 const port = 8080;
+app.use(cors());
 // app.use(bodyParser.json());
-// app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-async function generateAesKey(length = 256) {
-  const key = await subtle.generateKey(
-    {
-      name: "AES-CBC",
-      length,
-    },
-    true,
-    ["encrypt", "decrypt"]
-  );
+const algorithm = "aes-256-cbc"; 
+const initVector = crypto.randomBytes(16);
+const Securitykey = crypto.randomBytes(32);
 
-  return key;
-}
 
-app.get("/encryption", async (req, res) => {
-  const ec = new TextEncoder();
-  const key = await generateAesKey();
-  // const iv = getRandomValues(new Uint8Array(16));
-  const iv = crypto.randomBytes(16)
+app.get("/meet-rules", (req, res) => {
+  const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
+  let encryptedData = cipher.update(jsonData, "utf-8", "hex");
+  encryptedData += cipher.final("hex");
 
-  const plaintext = "hello world";
-
-  const ciphertext = await subtle.encrypt(
-    {
-      name: "AES-CBC",
-      iv,
-    },
-    key,
-    ec.encode(plaintext)
-  );
-
-  // return res.send({
-  //   key, iv, ciphertext
-  // })
-
-  console.log({
-    key,
-    iv,
-    ciphertext
-  })
-
-  // res.json({
-  //   key,
-  //   iv,
-  //   ciphertext,
-  // });
+  return res.json({
+    algorithm: algorithm,
+    securityKey: Securitykey.toString("hex"),
+    initVector: initVector.toString("hex"),
+    encryptedData: encryptedData
+  });
 });
+
+
+// the decipher function
+// const decipher = crypto.createDecipheriv(algorithm, Securitykey, initVector);
+
+// let decryptedData = decipher.update(encryptedData, "hex", "utf-8");
+
+// decryptedData += decipher.final("utf8");
+
+// console.log("Decrypted message: " + decryptedData);
+
+
+
+// ======================================================================== the earlier version
+// async function generateAesKey(length = 256) {
+//   const key = await subtle.generateKey(
+//     {
+//       name: "AES-CBC",
+//       length,
+//     },
+//     true,
+//     ["encrypt", "decrypt"]
+//   );
+
+//   return key;
+// }
+
+// app.get("/encryption", async (req, res) => {
+//   const ec = new TextEncoder();
+//   const key = await generateAesKey();
+//   // const iv = getRandomValues(new Uint8Array(16));
+//   const iv = crypto.randomBytes(16)
+
+//   const plaintext = "hello world";
+
+//   const ciphertext = await subtle.encrypt(
+//     {
+//       name: "AES-CBC",
+//       iv,
+//     },
+//     key,
+//     ec.encode(plaintext)
+//   );
+
+//   // return res.send({
+//   //   key, iv, ciphertext
+//   // })
+
+//   console.log({
+//     key,
+//     iv,
+//     ciphertext
+//   })
+
+//   // res.json({
+//   //   key,
+//   //   iv,
+//   //   ciphertext,
+//   // });
+// });
 
 app.listen(port, () => {
   console.log(`extension api listening on port ${port}`);
