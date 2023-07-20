@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple HTML-JavaScript App</title>
+  </head>
+  <body>
+    <button onclick="showAlert()">Click me ok?</button>
+
+    <script>
+      console.log("hello wakeup");
+
+      async function getData() {
+        const res = await fetch("http://localhost:8080/meet-rules");
+        const data = await res.json();
+
+        const { algorithm, securityKey, initVector, encryptedData } = data;
+
+        // const securityKeyBuffer = Buffer.from(securityKey, "hex");
+        // const initVectorBuffer = Buffer.from(initVector, "hex");
+
+        const encodedKey = new TextEncoder().encode(securityKey);
+        const encodedIV = new TextEncoder().encode(initVector);
+
+        const decryptedData = await decryptData(
+          algorithm,
+          encodedKey,
+          encodedIV,
+          encryptedData
+        );
+
+        console.log("Decrypted message:", decryptedData);
+      }
+
+      getData();
+
+      async function decryptData(
+        algorithm,
+        securityKey,
+        initVector,
+        encryptedData
+      ) {
+        const encodedKey = await crypto.subtle.importKey(
+          "raw",
+          securityKey,
+          algorithm,
+          false,
+          ["decrypt"]
+        );
+
+        const decryptedArrayBuffer = await crypto.subtle.decrypt(
+          { name: algorithm, iv: initVector },
+          encodedKey,
+          encryptedData
+        );
+
+        const decryptedData = new TextDecoder().decode(decryptedArrayBuffer);
+
+        return decryptedData;
+      }
+
+      function showAlert() {
+        console.log("Alert!");
+      }
+    </script>
+  </body>
+</html>
